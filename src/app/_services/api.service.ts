@@ -6,7 +6,7 @@ import { Member } from '../_models/member';
   providedIn: 'root',
 })
 export class ApiService {
-  private url: string = 'http://uxdeve82-001-site6.itempurl.com/api/Members';
+  private url: string = 'https://wordle-with-friends.herokuapp.com/mock/player-data';
 
   constructor(private http: HttpClient) {}
 

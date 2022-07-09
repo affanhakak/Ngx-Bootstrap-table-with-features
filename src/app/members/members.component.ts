@@ -10,7 +10,7 @@ import { ApiService } from '../_services/api.service';
 export class MembersComponent implements OnInit {
   members: Member[] = [];
   firstName: any;
-  p: number = 1;
+  pageIndex: number = 1;
   key: string = 'id';
   reverse: boolean = false;
 
