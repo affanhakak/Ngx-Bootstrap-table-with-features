@@ -1,0 +1,42 @@
+<h1>Employees Dashboard</h1>
+<nav class="navbar">
+  <input
+    class="form-control"
+    type="text"
+    name="firstName"
+    [(ngModel)]="firstName"
+    (ngModelChange)="search()"
+    placeholder="Enter First Name"
+  />
+</nav>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th (click)="sort('id')">
+        Serial Number&nbsp;<i class="fa fa-sort"></i>
+      </th>
+      <th (click)="sort('firstName')">First Name&nbsp; <i class="fa fa-sort"></i></th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Mobile</th>
+      <th>Salary</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let member of members
+          | orderBy: key:reverse
+          | paginate: { itemsPerPage: 5, currentPage: p }
+      "
+    >
+      <td>{{ member.id }}</td>
+      <td>{{ member.firstName }}</td>
+      <td>{{ member.lastName }}</td>
+      <td>{{ member.email }}</td>
+      <td>{{ member.mobile }}</td>
+      <td>{{ member.salary }}</td>
+    </tr>
+  </tbody>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</table>
