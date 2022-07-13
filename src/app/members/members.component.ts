@@ -7,12 +7,15 @@ import { ApiService } from '../_services/api.service';
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.css'],
 })
+
 export class MembersComponent implements OnInit {
   members: Member[] = [];
   firstName: any;
   pageIndex: number = 1;
   key: string = 'id';
   reverse: boolean = false;
+  tableSize: number = 4;
+  tableSizes: any = [4, 8, 12, 16, 20];
 
   constructor(private api: ApiService) {}
 
@@ -23,13 +26,13 @@ export class MembersComponent implements OnInit {
   getMembers() {
     this.api.getMembers().subscribe((res) => {
       this.members = res;
-      console.log(res);
+      // console.log(res);
     });
   }
 
   search() {
     if (this.firstName == '') {
-      this.ngOnInit();
+      this.getMembers();
     } else {
       this.members = this.members.filter((res) => {
         return res.firstName
@@ -42,5 +45,16 @@ export class MembersComponent implements OnInit {
   sort(key: any) {
     this.key = key;
     this.reverse = !this.reverse;
+  }
+
+  onTableDataChange(event: any) {
+    this.pageIndex = event;
+    this.getMembers();
+  }
+
+  onTableSizeChange(event: any) {
+    this.tableSize = event.target.value;
+    this.pageIndex = 1;
+    this.getMembers();
   }
 }

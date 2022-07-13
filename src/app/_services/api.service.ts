@@ -5,6 +5,7 @@ import { Member } from '../_models/member';
 @Injectable({
   providedIn: 'root',
 })
+
 export class ApiService {
   private url: string = 'https://wordle-with-friends.herokuapp.com/mock/player-data';
 
